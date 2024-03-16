@@ -1,0 +1,28 @@
+# baseURL
+@baseURL = http://localhost:3005
+
+### 
+# User Signup 
+POST {{ baseURL }}/api/v1/web/signup
+Content-Type: application/json
+
+{
+    "email": "example_12@email.com",
+    "password": "password@123"
+} 
+
+###
+# User Login
+POST {{ baseURL }}/api/v1/web/login
+Content-Type: application/json
+
+{
+    "email": "example@email.com",
+    "password": "password@123"
+}
+
+###
+# User Logout
+POST {{ baseURL }}/api/v1/web/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY1NTUzNWVhZjE1YWMwMDVmYWZmN2QiLCJpYXQiOjE3MTA1OTM0MTksImV4cCI6MTcxMDU5MzQ3OX0.RNMpRLf2S-hwPuX0nAks3tVa3yXF7_GdEoycFUe6778
