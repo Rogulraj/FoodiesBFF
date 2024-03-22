@@ -13,3 +13,12 @@ export interface TokenData {
 export interface RequestWithUser extends Request {
   user: User;
 }
+
+export interface RequestWithToken extends Request {
+  token: string;
+}
+
+export interface RequestWithFormData extends Request {
+  formData: FormData;
+  token?: string;
+}

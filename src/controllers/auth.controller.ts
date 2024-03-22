@@ -12,7 +12,7 @@ export class AuthController {
       const userData: User = req.body;
       const signUpUserData: CommonResponse<CreateUserResponse> = await this.auth.signup(userData);
 
-      res.status(signUpUserData.statusCode).json({ ...signUpUserData });
+      res.status(signUpUserData.statusCode).json(signUpUserData);
     } catch (error) {
       next(error);
     }
