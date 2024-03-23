@@ -15,6 +15,9 @@ export interface RestaurantType {
   _id?: string;
   name: string;
   imageUrl: string;
+  deliveryDuration: string;
+  minOrderVal: number;
+  tags: string[];
   menuType: MenuType;
 }
 

@@ -10,12 +10,23 @@ export class RestaurantController {
   public createRestaurant = async (req: RequestWithToken, res: Response, next: NextFunction) => {
     try {
       const userData = req.body;
-      console.log('userData = ', userData);
+      // console.log('userData = ', userData);
       const token: string = req.token;
 
       const createRestaurantData: CommonResponse<RestaurantType> = await this.service.createRestaurant(userData, token);
 
       res.status(createRestaurantData.statusCode).json(createRestaurantData);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public getAllRestaurants = async (req: RequestWithToken, res: Response, next: NextFunction) => {
+    try {
+      const token: string = req.token;
+      const restaurantsList: CommonResponse<RestaurantType[]> = await this.service.getAllRestaurants(token);
+
+      res.status(restaurantsList.statusCode).json(restaurantsList);
     } catch (error) {
       next(error);
     }

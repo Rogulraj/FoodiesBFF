@@ -1,30 +1,71 @@
+import { HttpException } from '@/exceptions/httpException';
 import { CommonResponse, IdNameResponse } from '@/interfaces/commonResponse.interface';
 import { AddMenuBody, RestaurantType } from '@/interfaces/restaurant.interface';
 import { CoreClient } from '@/utils/coreClient';
-import { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 export class RestaurantService {
   public async createRestaurant(userData: RestaurantType, token: string): Promise<CommonResponse<RestaurantType>> {
-    const coreClient = new CoreClient(3000, { Authorization: `Bearer ${token}` }).getCoreClient();
-    const createData: AxiosResponse = await coreClient.post('/web/restaurant/create', userData);
+    try {
+      const coreClient = new CoreClient(3000, { Authorization: `Bearer ${token}` }).getCoreClient();
+      const createData: AxiosResponse = await coreClient.post('/web/restaurant/create', userData);
 
-    const data: CommonResponse<RestaurantType> = createData.data;
-    return data;
+      const data: CommonResponse<RestaurantType> = createData.data;
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const axiosError: AxiosError<CommonResponse<{}>> = error;
+        const axiosData = axiosError.response.data;
+        throw new HttpException(axiosData.statusCode, axiosData.message);
+      }
+    }
+  }
+
+  public async getAllRestaurants(token: string): Promise<CommonResponse<RestaurantType[]>> {
+    try {
+      const coreClient = new CoreClient(3000, { Authorization: `Bearer ${token}` }).getCoreClient();
+      const createData: AxiosResponse = await coreClient.get('/web/restaurant/');
+
+      const data: CommonResponse<RestaurantType[]> = createData.data;
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const axiosError: AxiosError<CommonResponse<{}>> = error;
+        const axiosData = axiosError.response.data;
+        throw new HttpException(axiosData.statusCode, axiosData.message);
+      }
+    }
   }
 
   public async addMenuType(userData, token: string) {
-    const coreClient = new CoreClient(3000, { Authorization: `Bearer ${token}` }).getCoreClient();
-    const addData: AxiosResponse = await coreClient.put('/web/restaurant/add-menu-type', userData);
+    try {
+      const coreClient = new CoreClient(3000, { Authorization: `Bearer ${token}` }).getCoreClient();
+      const addData: AxiosResponse = await coreClient.put('/web/restaurant/add-menu-type', userData);
 
-    const data: CommonResponse<IdNameResponse> = addData.data;
-    return data;
+      const data: CommonResponse<IdNameResponse> = addData.data;
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const axiosError: AxiosError<CommonResponse<{}>> = error;
+        const axiosData = axiosError.response.data;
+        throw new HttpException(axiosData.statusCode, axiosData.message);
+      }
+    }
   }
 
   public async addMenuItem(userData: AddMenuBody, token: string) {
-    const coreClient = new CoreClient(3000, { Authorization: `Bearer ${token}` }).getCoreClient();
-    const addData: AxiosResponse = await coreClient.put('/web/restaurant/add-menu-item', userData);
+    try {
+      const coreClient = new CoreClient(3000, { Authorization: `Bearer ${token}` }).getCoreClient();
+      const addData: AxiosResponse = await coreClient.put('/web/restaurant/add-menu-item', userData);
 
-    const data: CommonResponse<IdNameResponse> = addData.data;
-    return data;
+      const data: CommonResponse<IdNameResponse> = addData.data;
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const axiosError: AxiosError<CommonResponse<{}>> = error;
+        const axiosData = axiosError.response.data;
+        throw new HttpException(axiosData.statusCode, axiosData.message);
+      }
+    }
   }
 }

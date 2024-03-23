@@ -17,6 +17,7 @@ export class RestaurantRoute {
 
   private initializeRoute() {
     this.router.post(`${this.path}/create`, SetTokenMiddleware, this.controller.createRestaurant);
+    this.router.get(`${this.path}/`, SetTokenMiddleware, this.controller.getAllRestaurants);
     this.router.put(`${this.path}/add-menu-type`, SetTokenMiddleware, this.controller.addMenuType);
     this.router.put(`${this.path}/add-menu-item`, SetTokenMiddleware, this.controller.addMenuItem);
   }

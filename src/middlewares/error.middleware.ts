@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { HttpException } from '@exceptions/httpException';
 import { logger } from '@utils/logger';
-import { ReturnResponse } from '@/interfaces/commonResponse.interface';
+import { CommonResponse } from '@/interfaces/commonResponse.interface';
 
 export const ErrorMiddleware = (error: HttpException, req: Request, res: Response, next: NextFunction) => {
   try {
@@ -10,9 +10,9 @@ export const ErrorMiddleware = (error: HttpException, req: Request, res: Respons
 
     logger.error(`[${req.method}] ${req.path} >> StatusCode:: ${status}, Message:: ${message}`);
 
-    const response: ReturnResponse<object> = { statusCode: status, data: {}, message: message };
+    const response: CommonResponse<object> = { statusCode: status, data: {}, message: message };
 
-    res.status(status).json({ ...response });
+    res.status(status).json(response);
   } catch (error) {
     next(error);
   }
