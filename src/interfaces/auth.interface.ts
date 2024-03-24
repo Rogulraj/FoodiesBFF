@@ -17,8 +17,3 @@ export interface RequestWithUser extends Request {
 export interface RequestWithToken extends Request {
   token: string;
 }
-
-export interface RequestWithFormData extends Request {
-  formData: FormData;
-  token?: string;
-}

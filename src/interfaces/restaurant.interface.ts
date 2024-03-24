@@ -8,7 +8,7 @@ export interface MenuTypeItem {
 }
 
 export interface MenuType {
-  [key: string]: MenuTypeItem;
+  [key: string]: MenuTypeItem[];
 }
 
 export interface RestaurantType {

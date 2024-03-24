@@ -1,0 +1,7 @@
+
+
+@baseUrl = http://localhost:3005/api/v1/web/restaurant
+
+
+# Get food my id and category
+GET {{baseUrl}}/food/103?restaurantId=10&category=Breakfast
