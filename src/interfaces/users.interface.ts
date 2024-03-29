@@ -13,8 +13,14 @@ export interface CreateUserResponse {
   accountType: string;
 }
 
+export interface UserLoginBody {
+  email: string;
+  password: string;
+}
+
 export interface UserLoginResponse {
   _id: string;
   email: string;
+  accountType: string;
   tokenData: TokenData;
 }

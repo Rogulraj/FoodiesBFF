@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { RequestWithUser } from '@interfaces/auth.interface';
-import { CreateUserResponse, User, UserLoginResponse } from '@interfaces/users.interface';
+import { CreateUserResponse, User, UserLoginBody, UserLoginResponse } from '@interfaces/users.interface';
 import { AuthService } from '@services/auth.service';
 import { CommonResponse } from '@/interfaces/commonResponse.interface';
 
@@ -20,7 +20,7 @@ export class AuthController {
 
   public logIn = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userData: User = req.body;
+      const userData: UserLoginBody = req.body;
       const loginData: CommonResponse<UserLoginResponse> = await this.auth.login(userData);
 
       res.status(loginData.statusCode).json({ ...loginData });

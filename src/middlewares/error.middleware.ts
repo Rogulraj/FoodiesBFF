@@ -11,7 +11,7 @@ export const ErrorMiddleware = (error: HttpException, req: Request, res: Respons
     logger.error(`[${req.method}] ${req.path} >> StatusCode:: ${status}, Message:: ${message}`);
 
     const response: CommonResponse<object> = { statusCode: status, data: {}, message: message };
-
+    console.log(error);
     res.status(status).json(response);
   } catch (error) {
     next(error);

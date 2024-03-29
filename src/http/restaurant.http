@@ -2,6 +2,41 @@
 
 @baseUrl = http://localhost:3005/api/v1/web/restaurant
 
+# Get all menu items
+GET {{baseUrl}}/menu-items
+Authorization: Bearer 
+
 
 # Get food my id and category
 GET {{baseUrl}}/food/103?restaurantId=10&category=Breakfast
+
+###
+# update food item by id
+PUT {{baseUrl}}/food/update/6605821c2998b7f6df5d00ee
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjAxMTVjYThmMThhZDlhZTBhYzZiYmMiLCJpYXQiOjE3MTE2OTMyNDEsImV4cCI6MTcxMTY5Njg0MX0.YIXeo8yOYGyvNWj4c23cV03HdzHxiPKcDvy3OOoBpqk
+
+{
+    "restaurantId": "660115ca8f18ad9ae0ac6bbc",
+    "categoryId": "6601805cbbaa382cd9a6f706",
+    "item": {
+        "name": "Dosa",
+        "imageUrl": "/path",
+        "price": 10,
+        "description": "Im gonna try to update the food item with it is id",
+        "ingredients": "I litreally dont know, Hey sorry dude",
+        "nutritions": "it won't contains any nutritions any more"
+    }
+
+}
+
+###
+# delete food by id
+DELETE {{baseUrl}}/food/remove-food/66067fd982690843a815d9ab
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjAxMTVjYThmMThhZDlhZTBhYzZiYmMiLCJpYXQiOjE3MTE3MDgwODEsImV4cCI6MTcxMTcxMTY4MX0.DdkeQA_i9asrgaXf4m6Sh22K0SPAbU1Hm9RHdX-EVug
+
+{
+    "restaurantId": "660115ca8f18ad9ae0ac6bbc",
+    "categoryId": "660181c1bbaa382cd9a6f744"
+}

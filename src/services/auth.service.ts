@@ -1,6 +1,6 @@
 import { HttpException } from '@exceptions/httpException';
 import { RequestWithUser } from '@interfaces/auth.interface';
-import { CreateUserResponse, User, UserLoginResponse } from '@interfaces/users.interface';
+import { CreateUserResponse, User, UserLoginBody, UserLoginResponse } from '@interfaces/users.interface';
 import { CoreClient } from '@/utils/coreClient';
 import { CommonResponse } from '@/interfaces/commonResponse.interface';
 import { AxiosResponse } from 'axios';
@@ -23,7 +23,7 @@ export class AuthService {
     }
   }
 
-  public async login(userData: User): Promise<CommonResponse<UserLoginResponse>> {
+  public async login(userData: UserLoginBody): Promise<CommonResponse<UserLoginResponse>> {
     try {
       const coreClient = new CoreClient(3000).getCoreClient();
 
