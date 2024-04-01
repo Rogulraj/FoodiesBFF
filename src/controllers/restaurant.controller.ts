@@ -43,6 +43,18 @@ export class RestaurantController {
     }
   };
 
+  public updateRestaurant = async (req: RequestWithToken, res: Response, next: NextFunction) => {
+    try {
+      const token = req.token;
+      const userData: Partial<RestaurantType> = req.body;
+
+      const updateData = await this.service.updateRestaurant(userData, token);
+      res.status(updateData.statusCode).json(updateData);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   public addMenuCategory = async (req: RequestWithToken, res: Response, next: NextFunction) => {
     try {
       const userData: AddMenuBody = req.body;
@@ -71,8 +83,6 @@ export class RestaurantController {
   public getAllMenuItems = async (req: RequestWithToken, res: Response, next: NextFunction) => {
     try {
       const token = req.token;
-
-      console.log(token);
 
       const menuItemsList: CommonResponse<MenuType[]> = await this.service.getAllMenuItems(token);
       res.status(menuItemsList.statusCode).json(menuItemsList);

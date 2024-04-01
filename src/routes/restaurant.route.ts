@@ -1,5 +1,5 @@
 import { RestaurantController } from '@/controllers/restaurant.controller';
-import { CategoryQueryDto, CategoryRestaurantIdDto, IdParamDto, UpdateFoodItemDto } from '@/dtos/restaurant.dto';
+import { CategoryQueryDto, CategoryRestaurantIdDto, IdParamDto, RestaurantDto, UpdateFoodItemDto } from '@/dtos/restaurant.dto';
 import { SetTokenMiddleware } from '@/middlewares/auth.middleware';
 import { SetUpMulterWithStorage } from '@/middlewares/multer.middleware';
 import { ParamsValidationMiddelware, QueryValidationMiddelware, BodyValidationMiddleware } from '@/middlewares/validation.middleware';
@@ -26,6 +26,7 @@ export class RestaurantRoute {
     this.router.post(`${this.path}/create`, SetTokenMiddleware, this.controller.createRestaurant);
 
     /** PUT */
+    this.router.put(`${this.path}/update`, BodyValidationMiddleware(RestaurantDto, true), SetTokenMiddleware, this.controller.updateRestaurant);
     this.router.put(`${this.path}/add-menu-category`, SetTokenMiddleware, this.controller.addMenuCategory);
     this.router.put(`${this.path}/add-menu-item`, SetTokenMiddleware, this.controller.addMenuItem);
     this.router.put(

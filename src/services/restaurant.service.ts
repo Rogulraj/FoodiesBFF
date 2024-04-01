@@ -56,6 +56,23 @@ export class RestaurantService {
     }
   }
 
+  public async updateRestaurant(userData: Partial<RestaurantType>, token: string): Promise<CommonResponse<IdResponse>> {
+    try {
+      const coreClient = new CoreClient(5000, { Authorization: `Bearer ${token}` }).getCoreClient();
+      const axiosResponse: AxiosResponse = await coreClient.put('/web/restaurant/update', userData);
+
+      const data: CommonResponse<IdResponse> = axiosResponse.data;
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const axiosError: AxiosError<CommonResponse<{}>> = error;
+        const axiosData = axiosError?.response?.data;
+        throw new HttpException(axiosData?.statusCode, axiosData?.message);
+      }
+      throw new HttpException(500, error.message);
+    }
+  }
+
   public async addMenuCategory(userData: AddMenuBody, token: string) {
     try {
       const coreClient = new CoreClient(3000, { Authorization: `Bearer ${token}` }).getCoreClient();

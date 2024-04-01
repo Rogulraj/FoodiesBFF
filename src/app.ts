@@ -11,7 +11,6 @@ import bodyParser from 'body-parser';
 import { Routes } from '@interfaces/routes.interface';
 import { CREDENTIALS, LOG_FORMAT, NODE_ENV, ORIGIN, PORT } from '@config';
 import { logger, stream } from '@utils/logger';
-// import { dbConnection } from '@database';
 import { ErrorMiddleware } from '@middlewares/error.middleware';
 
 export class App {
@@ -26,7 +25,6 @@ export class App {
     this.port = PORT || 3005;
     this.path = '/api/v1';
 
-    // this.connectToDatabase();
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
     this.initializeSwagger();
@@ -45,10 +43,6 @@ export class App {
   public getServer() {
     return this.app;
   }
-
-  // private async connectToDatabase() {
-  //   await dbConnection();
-  // }
 
   private initializeMiddlewares() {
     this.app.use(morgan(LOG_FORMAT, { stream }));

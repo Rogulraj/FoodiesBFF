@@ -62,3 +62,25 @@ export class CategoryRestaurantIdDto {
   @IsString()
   public categoryId: string;
 }
+
+export class RestaurantDto {
+  @IsNotEmpty()
+  @IsString()
+  public _id?: string;
+
+  @IsNotEmpty()
+  @IsString()
+  public name: string;
+
+  @IsNotEmpty()
+  @IsBase64()
+  public imageUrl: string;
+
+  @IsNotEmpty()
+  @IsString()
+  public deliveryDuration: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  minOrderVal: number;
+}
